@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Executive Strategic Report - V6 Funnel | DOXA Talent</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="report-container">
+
+        <!-- HEADER -->
+        <header class="report-header">
+            <div class="brand">
+                <div class="logo-icon" style="background: #2563eb;"><i class="fa-solid fa-briefcase"></i></div>
+                <div class="brand-text">
+                    <h1>Burnett Specialists</h1>
+                    <span class="report-type">October 2026 • Apollo Execution Report</span>
+                </div>
+            </div>
+            <div class="report-meta">
+                <div class="meta-item">
+                    <span class="label">MQLs Generated</span>
+                    <span class="value" style="color: var(--accent-success); font-size: 1.5rem;">342</span>
+                </div>
+                <div class="mini-gauge-container">
+                    <span>Goal Pace</span>
+                    <canvas id="chart-gauge" height="50"></canvas>
+                </div>
+            </div>
+        </header>
+
+        <!-- 1. HERO SUMMARY + 3D CONE FUNNEL -->
+        <section class="section summary-section">
+            <div class="section-top">
+                <h2 class="section-title"><i class="fa-solid fa-layer-group"></i> Executive Summary</h2>
+            </div>
+
+            <!-- KPI Cards -->
+            <div class="kpi-grid">
+                <div class="kpi-card highlight">
+                    <div class="kpi-data"><span class="kpi-label">Revenue Forecast</span><span
+                            class="kpi-value">$145k</span></div>
+                    <div class="kpi-chart"><canvas id="spark-revenue"></canvas></div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-data"><span class="kpi-label">Pipeline Value</span><span
+                            class="kpi-value">$450k</span></div>
+                    <div class="kpi-chart"><canvas id="spark-pipeline"></canvas></div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-data"><span class="kpi-label">Meetings Booked</span><span
+                            class="kpi-value">24</span></div>
+                    <div class="kpi-chart"><canvas id="spark-meetings"></canvas></div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-data"><span class="kpi-label">New Leads</span><span class="kpi-value">1,250</span>
+                    </div>
+                    <div class="kpi-chart"><canvas id="spark-leads"></canvas></div>
+                </div>
+            </div>
+
+            <!-- THE 3D CONE FUNNEL (New) -->
+            <div class="cone-funnel-wrapper mt-4">
+                <div class="funnel-stack">
+
+                    <!-- 1. Prospecting -->
+                    <div class="funnel-step fs-1">
+                        <div class="fs-label-group">
+                            <div class="fs-icon"><i class="fa-solid fa-users-viewfinder"></i></div>
+                            <div class="fs-names">
+                                <span class="fs-stage">Prospecting</span>
+                                <span class="fs-metric-name">Contacts Verified</span>
+                            </div>
+                        </div>
+                        <div class="fs-value-group">
+                            <span class="fs-val">5,420</span>
+                            <span class="fs-sub">Total Available</span>
+                        </div>
+                    </div>
+
+                    <!-- 2. Validation -->
+                    <div class="funnel-step fs-2">
+                        <div class="fs-label-group">
+                            <div class="fs-icon"><i class="fa-solid fa-check-double"></i></div>
+                            <div class="fs-names">
+                                <span class="fs-stage">Validation</span>
+                                <span class="fs-metric-name">Valid Emails</span>
+                            </div>
+                        </div>
+                        <div class="fs-value-group">
+                            <span class="fs-val">4,850</span>
+                            <span class="fs-sub">89% Validity Rate</span>
+                        </div>
+                    </div>
+
+                    <!-- 3. Outreach -->
+                    <div class="funnel-step fs-3">
+                        <div class="fs-label-group">
+                            <div class="fs-icon"><i class="fa-regular fa-paper-plane"></i></div>
+                            <div class="fs-names">
+                                <span class="fs-stage">Outreach</span>
+                                <span class="fs-metric-name">Emails Delivered</span>
+                            </div>
+                        </div>
+                        <div class="fs-value-group">
+                            <span class="fs-val">4,600</span>
+                            <span class="fs-sub">95% Deliv. Rate</span>
+                        </div>
+                    </div>
+
+                    <!-- 4. Engagement -->
+                    <div class="funnel-step fs-4">
+                        <div class="fs-label-group">
+                            <div class="fs-icon"><i class="fa-regular fa-envelope-open"></i></div>
+                            <div class="fs-names">
+                                <span class="fs-stage">Engagement</span>
+                                <span class="fs-metric-name">Unique Opens</span>
+                            </div>
+                        </div>
+                        <div class="fs-value-group">
+                            <span class="fs-val">2,070</span>
+                            <span class="fs-sub">45% Open Rate</span>
+                        </div>
+                    </div>
+
+                    <!-- 5. Conversion (Goal) -->
+                    <div class="funnel-step fs-5">
+                        <div class="fs-label-group">
+                            <div class="fs-icon"><i class="fa-solid fa-handshake"></i></div>
+                            <div class="fs-names">
+                                <span class="fs-stage" style="color:#d1fae5">Success</span>
+                                <span class="fs-metric-name">Meetings Booked</span>
+                            </div>
+                        </div>
+                        <div class="fs-value-group">
+                            <span class="fs-val">142</span>
+                            <span class="fs-sub" style="color:#d1fae5">6.8% Conversion</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="strategic-insight mt-4">
+                <div class="si-icon"><i class="fa-solid fa-lightbulb"></i></div>
+                <div class="si-content">
+                    <strong>Critical Dropoff:</strong> Only 5 meetings from 25 qualified leads suggests a scheduling
+                    friction. We recommend automating the calendar booking immediately after qualification.
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. FUNNEL CARDS -->
+        <section class="section">
+            <h2 class="section-title"><i class="fa-solid fa-filter"></i> Funnel Intelligence</h2>
+            <div class="grid-3">
+                <div class="funnel-stage-card">
+                    <div class="stage-header stage-tofu">
+                        <h3>TOFU</h3><span class="stage-desc">Awareness & Reach</span>
+                    </div>
+                    <div class="stage-body">
+                        <div class="micro-metric"><span class="lbl">Unique Leads</span><span class="val">1,250</span>
+                        </div>
+                        <div class="micro-metric"><span class="lbl">TAM Penetration</span><span class="val"
+                                style="color: #8b5cf6">12%</span></div>
+                    </div>
+                    <div style="height: 100px; padding: 0 1.5rem 1.5rem 1.5rem;"><canvas id="chart-tam"></canvas></div>
+                </div>
+                <div class="funnel-stage-card">
+                    <div class="stage-header stage-mofu">
+                        <h3>MOFU</h3><span class="stage-desc">Engagement</span>
+                    </div>
+                    <div class="stage-body">
+                        <div class="micro-metric"><span class="lbl">Avg Open Rate</span><span class="val">45%</span>
+                        </div>
+                        <div class="micro-metric"><span class="lbl">Replies</span><span class="val"
+                                style="color: #d946ef">871</span></div>
+                    </div>
+                    <div style="height: 100px; padding: 0 1.5rem 1.5rem 1.5rem;"><canvas
+                            id="chart-engagement-mini"></canvas></div>
+                </div>
+                <div class="funnel-stage-card">
+                    <div class="stage-header stage-bofu">
+                        <h3>BOFU</h3><span class="stage-desc">Conversion</span>
+                    </div>
+                    <div class="stage-body">
+                        <div class="micro-metric"><span class="lbl">Qualified Meetings</span><span
+                                class="val">142</span></div>
+                        <div class="micro-metric"><span class="lbl">Active Deals</span><span class="val"
+                                style="color: #f43f5e">18</span></div>
+                    </div>
+                    <div style="height: 100px; padding: 0 1.5rem 1.5rem 1.5rem;"><canvas id="chart-win-mini"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. OUTBOUND PERFORMANCE (Refeshed Digital Grid) -->
+        <section class="section">
+            <h2 class="section-title"><i class="fa-solid fa-paper-plane"></i> Outbound Performance</h2>
+
+            <div class="digital-grid-container">
+
+                <!-- Row 1: KPI Panels -->
+                <div class="digital-row-top">
+                    <!-- Panel 1: Email -->
+                    <div class="digital-panel">
+                        <div class="panel-head">Cold Email</div>
+                        <div class="panel-body-kpi">
+                            <div class="dk-item"><span class="dk-lbl">Verified Emails</span><span
+                                    class="dk-val">4,850</span></div>
+                            <div class="dk-item"><span class="dk-lbl">Open Rate</span><span class="dk-val"
+                                    style="color:#10b981">45.2%</span></div>
+                        </div>
+                    </div>
+                    <!-- Panel 2: Calls -->
+                    <div class="digital-panel">
+                        <div class="panel-head">Cold Calls</div>
+                        <div class="panel-body-kpi">
+                            <div class="dk-item"><span class="dk-lbl">Total Dials</span><span
+                                    class="dk-val">12,500</span></div>
+                            <div class="dk-item"><span class="dk-lbl">Connect Rate</span><span class="dk-val"
+                                    style="color:#f59e0b">3.8%</span></div>
+                        </div>
+                    </div>
+                    <!-- Panel 3: LinkedIn -->
+                    <div class="digital-panel">
+                        <div class="panel-head">LinkedIn Outreach</div>
+                        <div class="panel-body-kpi">
+                            <div class="dk-item"><span class="dk-lbl">Requests Sent</span><span
+                                    class="dk-val">6,780</span></div>
+                            <div class="dk-item"><span class="dk-lbl">Accept Rate</span><span class="dk-val"
+                                    style="color:#6366f1">28.4%</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Row 1.5: Full Width Chart -->
+                <div class="digital-row-full">
+                    <div class="digital-chart-box" style="height: 300px;">
+                        <div class="d-chart-title">Email Engagement Trend</div>
+                        <canvas id="chart-email-trend"></canvas>
+                    </div>
+                </div>
+
+                <!-- Row 2: Charts -->
+                <div class="digital-row-mid">
+
+                    <div class="digital-chart-box">
+                        <div class="d-chart-title">Meeting Source</div>
+                        <!-- Reusing source chart logic but placed here -->
+                        <canvas id="chart-source-mini"></canvas>
+                    </div>
+                    <div class="digital-chart-box">
+                        <div class="d-chart-title">Top Sequences (Recipients)</div>
+                        <!-- New Bar Chart -->
+                        <canvas id="chart-sequences"></canvas>
+                    </div>
+                </div>
+
+                <!-- Row 3: Channel Strip -->
+                <div class="digital-strip">
+                    <div class="strip-header">Channel Breakdown Summary</div>
+                    <div class="strip-body">
+                        <div class="strip-item">
+                            <div class="strip-icon"><i class="fa-solid fa-phone"></i></div>
+                            <div class="strip-data"><span class="strip-lbl">Calls</span><span
+                                    class="strip-val">12,450</span></div>
+                        </div>
+                        <div class="strip-item">
+                            <div class="strip-icon"><i class="fa-solid fa-envelope"></i></div>
+                            <div class="strip-data"><span class="strip-lbl">Emails</span><span
+                                    class="strip-val">8,920</span></div>
+                        </div>
+                        <div class="strip-item">
+                            <div class="strip-icon"><i class="fa-brands fa-linkedin-in"></i></div>
+                            <div class="strip-data"><span class="strip-lbl">LinkedIn</span><span
+                                    class="strip-val">7,540</span></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 4. WEBSITE INTELLIGENCE -->
+        <section class="section">
+            <h2 class="section-title"><i class="fa-solid fa-globe"></i> Website Intelligence & Engagement</h2>
+            <div class="grid-3">
+                <!-- Table 1: Visitors from Sequence -->
+                <div class="box">
+                    <h3><i class="fa-solid fa-link"></i> Visitors from Sequence</h3>
+                    <div class="table-scroll-container">
+                        <table class="data-table small-table">
+                            <thead>
+                                <tr>
+                                    <th>Company</th>
+                                    <th>Visitor</th>
+                                    <th>Source</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-web-sequence"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Table 2: Visitors Not in Sequence -->
+                <div class="box">
+                    <h3><i class="fa-solid fa-ghost"></i> Visitors Not in Sequence</h3>
+                    <div class="table-scroll-container">
+                        <table class="data-table small-table">
+                            <thead>
+                                <tr>
+                                    <th>Company</th>
+                                    <th>Source</th>
+                                    <th>Time</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-web-organic"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Table 3: Most Engaged Contacts -->
+                <div class="box">
+                    <h3><i class="fa-solid fa-fire"></i> Most Engaged Contacts</h3>
+                    <div class="table-scroll-container">
+                        <table class="data-table small-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Score</th>
+                                    <th>Last Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-engaged-contacts"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. BOFU LEADS INTELLIGENCE (Apollo Style) -->
+        <section class="section">
+            <h2 class="section-title"><i class="fa-solid fa-bullseye"></i> High-Intent Opportunities (BOFU)</h2>
+            <div style="display: block;"> <!-- Full width container -->
+
+                <div class="box">
+                    <h3><i class="fa-solid fa-list-ul"></i> Hot Leads (Apollo Signals)</h3>
+                    <div class="table-scroll-container" style="overflow-x:auto;">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Contact Name</th>
+                                    <th>Title</th>
+                                    <th>Company</th>
+                                    <th>Score</th>
+                                    <th>Last Activity</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bofu-leads-body">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/mockData.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+
+</html>

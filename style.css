@@ -1,0 +1,1048 @@
+:root {
+    /* Colors */
+    --bg-body: #020617;
+    --bg-report: #0f172a;
+    --bg-card: #1e293b;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+
+    /* Brand Gradients - Visual Inspiration */
+    --grad-tofu: linear-gradient(135deg, #6366f1, #8b5cf6);
+    --grad-mofu: linear-gradient(135deg, #8b5cf6, #d946ef);
+    --grad-bofu: linear-gradient(135deg, #d946ef, #f43f5e);
+
+    /* Funnel Specifics (From Image) */
+    --funnel-red-1: #ff0000;
+    --funnel-red-2: #ff4d4d;
+    --funnel-red-3: #ff8080;
+    --funnel-grey: #a0aec0;
+    --funnel-black: #1a202c;
+
+    --accent-core: #6366f1;
+    --accent-success: #10b981;
+    --accent-danger: #ef4444;
+    --accent-warning: #f59e0b;
+
+    --border: #334155;
+    --radius-md: 12px;
+}
+
+body {
+    background-color: var(--bg-body);
+    color: var(--text-primary);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    padding: 2rem;
+}
+
+.report-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    background-color: var(--bg-report);
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+/* Header */
+.report-header {
+    background: linear-gradient(135deg, #1e293b, #111827);
+    padding: 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo-icon {
+    width: 50px;
+    height: 50px;
+    background: var(--accent-core);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+.brand-text h1 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.8rem;
+    margin-bottom: 0px;
+}
+
+.report-type {
+    color: var(--accent-core);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.report-meta {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.meta-item {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+}
+
+.meta-item .label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+}
+
+.meta-item .value {
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.mini-gauge-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mini-gauge-container span {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+}
+
+/* NEW 3D CONE FUNNEL COMPONENT */
+.cone-funnel-wrapper {
+    background: #fff;
+    /* White bg as per image implies light theme for this part, or keep dark? Image shows white bg. Let's stick to report theme but maybe a light container for contrast if needed. Actually Image 1 implies white background. Let's make this section distinctly light or keep dark pro theme. User said "Super Pro" dark mode usually. Let's adapt the funnel to DARK MODE but keep shapes. */
+    background: var(--bg-card);
+    /* Keep dark for consistency */
+    padding: 3rem;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cone-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr;
+    /* Left Labels, Center Cone, Right Metrics */
+    gap: 2rem;
+    width: 100%;
+    max-width: 900px;
+    align-items: center;
+}
+
+.funnel-row {
+    display: contents;
+    /* Allows children to sit on the main grid */
+}
+
+/* Left: Stage Labels */
+.stage-label-box {
+    background: #ff0000;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    /* Slightly rounded */
+    font-weight: 700;
+    text-align: center;
+    font-family: 'Outfit', sans-serif;
+    position: relative;
+    justify-self: end;
+    /* Align to right of column */
+    min-width: 140px;
+}
+
+/* Connector Line Left */
+.stage-label-box::after {
+    content: '';
+    position: absolute;
+    right: -2rem;
+    /* Extend towards cone */
+    top: 50%;
+    width: 2rem;
+    height: 1px;
+    background: #555;
+    z-index: 0;
+}
+
+/* Dot */
+.stage-label-box::before {
+    content: '';
+    position: absolute;
+    right: -2.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    background: #555;
+    border-radius: 50%;
+}
+
+
+/* Center: 3D Cone Layers */
+.cone-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Reduce gap to make it look like one stack */
+    gap: 0;
+}
+
+.cone-layer {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 800;
+    font-size: 1.1rem;
+    position: relative;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    /* Trapazoid Shape using perspective or clip-path. Let's use clip-path for cleaner edges */
+    clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%);
+    background: #0f172a;
+    /* Ensure deep dark background for glow pop */
+    padding: 3rem 1rem;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Background Glow Effect */
+.cone-funnel-wrapper::before {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.funnel-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+    gap: 0.75rem;
+    /* Space between floating layers */
+    z-index: 1;
+}
+
+.funnel-step {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    background: rgba(30, 41, 59, 0.4);
+    /* Glassy dark */
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    transition: all 0.3s ease;
+    cursor: default;
+
+    /* 3D Perspective Hint */
+    transform: perspective(1000px) rotateX(2deg);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.funnel-step:hover {
+    transform: perspective(1000px) rotateX(0deg) scale(1.02);
+    background: rgba(30, 41, 59, 0.7);
+    z-index: 10;
+}
+
+/* Tapering Widths & Brand Colors */
+.fs-1 {
+    width: 100%;
+    border-bottom: 3px solid #6366f1;
+    box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.2);
+}
+
+.fs-2 {
+    width: 90%;
+    border-bottom: 3px solid #8b5cf6;
+    box-shadow: 0 10px 20px -5px rgba(139, 92, 246, 0.2);
+}
+
+.fs-3 {
+    width: 80%;
+    border-bottom: 3px solid #d946ef;
+    box-shadow: 0 10px 20px -5px rgba(217, 70, 239, 0.2);
+}
+
+.fs-4 {
+    width: 70%;
+    border-bottom: 3px solid #f43f5e;
+    box-shadow: 0 10px 20px -5px rgba(244, 63, 94, 0.2);
+}
+
+.fs-5 {
+    width: 60%;
+    border-bottom: 3px solid #10b981;
+    box-shadow: 0 10px 20px -5px rgba(16, 185, 129, 0.2);
+    background: linear-gradient(180deg, rgba(16, 185, 129, 0.1) 0%, rgba(30, 41, 59, 0.6) 100%);
+}
+
+/* Content Styling */
+.fs-label-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.fs-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.fs-1 .fs-icon {
+    color: #6366f1;
+    background: rgba(99, 102, 241, 0.1);
+}
+
+.fs-5 .fs-icon {
+    color: #10b981;
+    background: rgba(16, 185, 129, 0.1);
+}
+
+.fs-names {
+    display: flex;
+    flex-direction: column;
+}
+
+.fs-stage {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.fs-metric-name {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #fff;
+}
+
+.fs-value-group {
+    text-align: right;
+}
+
+.fs-val {
+    font-family: 'Outfit';
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    display: block;
+    line-height: 1;
+}
+
+.fs-sub {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-top: 4px;
+    display: block;
+}
+
+.fs-rate {
+    font-size: 0.75rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    margin-left: 6px;
+}
+
+/* Conversion Highlight */
+.fs-5 .fs-val {
+    color: #10b981;
+    text-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+}
+
+/* VISUAL INSPIRATION: TOFU / MOFU / BOFU Cards */
+.funnel-stage-card {
+    background: var(--bg-card);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.stage-header {
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.stage-tofu {
+    background: var(--grad-tofu);
+}
+
+.stage-mofu {
+    background: var(--grad-mofu);
+}
+
+.stage-bofu {
+    background: var(--grad-bofu);
+}
+
+.stage-header h3 {
+    font-family: 'Outfit';
+    font-size: 1.2rem;
+    margin: 0;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.stage-desc {
+    font-size: 0.8rem;
+    opacity: 0.9;
+    font-weight: 400;
+}
+
+.stage-body {
+    padding: 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.micro-metric {
+    display: flex;
+    flex-direction: column;
+}
+
+.micro-metric span.lbl {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+}
+
+.micro-metric span.val {
+    font-size: 1.4rem;
+    font-weight: 700;
+    font-family: 'Outfit';
+}
+
+/* Layouts */
+.box {
+    background: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+}
+
+.box h3 {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* VISUAL INSPIRATION: Side Legend Layout */
+.chart-with-legend {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    height: 100%;
+}
+
+.chart-area {
+    flex: 1.5;
+    height: 180px;
+    position: relative;
+}
+
+.legend-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.legend-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    padding: 0.25rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.legend-color {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+}
+
+.legend-val {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* KPI Grid */
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.kpi-card {
+    background: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.kpi-card.highlight {
+    background: linear-gradient(135deg, #1e293b, #2e1065);
+    border-color: #6366f1;
+}
+
+.kpi-data {
+    display: flex;
+    flex-direction: column;
+}
+
+.kpi-label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.25rem;
+}
+
+.kpi-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    font-family: 'Outfit';
+}
+
+.kpi-chart {
+    width: 80px;
+    height: 40px;
+}
+
+/* Section & Helpers */
+.section {
+    padding: 2.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.section-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.section-title {
+    font-family: 'Outfit';
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: #fff;
+}
+
+.visual-title {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.section-title i {
+    color: var(--accent-core);
+    opacity: 0.8;
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+}
+
+.mt-4 {
+    margin-top: 1.5rem;
+}
+
+/* Custom Elements */
+.heatmap-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 4px;
+    aspect-ratio: 2/1;
+}
+
+.heatmap-cell {
+    border-radius: 4px;
+}
+
+.ab-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.ab-row {
+    padding: 1rem;
+    border-radius: 8px;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.ab-row.winner {
+    background: linear-gradient(90deg, rgba(16, 185, 129, 0.1), transparent);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.ab-row.loser {
+    background: rgba(255, 255, 255, 0.02);
+    opacity: 0.6;
+}
+
+.ab-row .badge {
+    font-weight: 700;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    color: #000;
+    border-radius: 50%;
+    font-size: 0.75rem;
+}
+
+.word-cloud-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.word-tag {
+    background: rgba(99, 102, 241, 0.15);
+    color: #a5b4fc;
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+}
+
+.data-table th {
+    text-align: left;
+    padding: 0.75rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    border-bottom: 1px solid var(--border);
+}
+
+.data-table td {
+    padding: 0.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.small-table td,
+.small-table th {
+    padding: 0.5rem;
+}
+
+.badge-status {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+}
+
+.strategic-insight {
+    background: linear-gradient(90deg, rgba(99, 102, 241, 0.1) 0%, transparent 100%);
+    border-left: 4px solid var(--accent-core);
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+}
+
+.si-icon {
+    background: rgba(99, 102, 241, 0.2);
+    color: var(--accent-core);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.si-content {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.si-content strong {
+    color: var(--text-primary);
+    display: block;
+    margin-bottom: 0.25rem;
+    font-size: 1rem;
+}
+
+/* Win/Loss Battle */
+.win-loss-container {
+    display: flex;
+    height: 80px;
+    margin: 1rem 0;
+    gap: 1rem;
+    align-items: center;
+    position: relative;
+}
+
+.wl-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+.wl-won {
+    align-items: flex-end;
+    text-align: right;
+}
+
+.wl-lost {
+    align-items: flex-start;
+    text-align: left;
+}
+
+.wl-bar {
+    height: 12px;
+    transition: width 1s;
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+}
+
+.wl-won .wl-bar {
+    background: var(--accent-success);
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
+}
+
+.wl-lost .wl-bar {
+    background: var(--accent-danger);
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.4);
+}
+
+.wl-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.wl-val {
+    font-family: 'Outfit';
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.wl-won .wl-val {
+    color: var(--accent-success);
+}
+
+.wl-lost .wl-val {
+    color: var(--accent-danger);
+}
+
+.wl-sub {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.wl-vs {
+    background: var(--bg-card);
+    border: 2px solid var(--border);
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.85rem;
+    z-index: 2;
+    flex-shrink: 0;
+}
+
+canvas {
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 250px;
+}
+
+.kpi-chart canvas {
+    max-height: 40px;
+}
+
+@media (max-width: 1024px) {
+
+    .grid-4,
+    .grid-3 {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .kpi-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .cone-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    /* Mobile Stack */
+    .stage-label-box,
+    .metric-card-box {
+        justify-self: center;
+        margin-bottom: 1rem;
+    }
+}
+
+/* V8: DIGITAL MARKETING STYLE GRID (New Outbound Layout) */
+.digital-grid-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Row 1: KPI Panels */
+.digital-row-top {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.digital-panel {
+    background: var(--bg-card);
+    border-radius: 4px;
+    /* Boxy look per image */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    /* Subtle border */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.panel-head {
+    background: rgba(30, 41, 59, 0.8);
+    /* Slightly lighter header */
+    padding: 0.75rem;
+    text-align: center;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.panel-body-kpi {
+    padding: 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    align-items: center;
+}
+
+.dk-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.dk-lbl {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.dk-val {
+    font-family: 'Outfit';
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+/* Row 1.5: Full Width Chart */
+.digital-row-full {
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+/* Row 2: Charts */
+.digital-row-mid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* Two distinct columns */
+    gap: 1.5rem;
+}
+
+.digital-chart-box {
+    background: var(--bg-card);
+    border-radius: 4px;
+    padding: 1rem;
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+}
+
+.d-chart-title {
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+
+/* Row 3: Strip (Social Style) */
+.digital-strip {
+    background: var(--bg-card);
+    border-radius: 4px;
+    padding: 0;
+    /* Header separates it */
+    display: flex;
+    flex-direction: column;
+}
+
+.strip-header {
+    background: rgba(30, 41, 59, 0.5);
+    padding: 0.5rem;
+    text-align: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    letter-spacing: 1px;
+}
+
+.strip-body {
+    display: flex;
+    justify-content: space-between;
+    /* Spread items evenly */
+    padding: 1.5rem 2rem;
+}
+
+.strip-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.strip-icon {
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    width: 40px;
+    height: 40px;
+    /* Force square for alignment */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.strip-data {
+    display: flex;
+    flex-direction: column;
+}
+
+.strip-lbl {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    margin-bottom: 2px;
+}
+
+.strip-val {
+    font-size: 1.1rem;
+    font-weight: 700;
+    font-family: 'Outfit';
+    color: #fff;
+}
+
+@media (max-width: 1024px) {
+
+    .digital-row-top,
+    .digital-row-mid {
+        grid-template-columns: 1fr;
+    }
+
+    .strip-body {
+        flex-wrap: wrap;
+        gap: 2rem;
+        justify-content: center;
+    }
+}
